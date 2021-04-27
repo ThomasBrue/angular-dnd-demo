@@ -1,0 +1,27 @@
+<h1>Angular-dnd-demo</h1>
+
+<p>
+  <button (click)="changePosition()">Change element position</button>
+</p>
+
+<div class="example-boundary">
+  <div
+    class="example-box"
+    cdkDrag
+    cdkDragBoundary=".example-boundary"
+    [cdkDragFreeDragPosition]="dragPosition"
+    style="z-index: 100;"
+    (cdkDragEnded)="onDragEnded($event)"
+  >
+    Drag me around_1
+
+    <div class="example-handle" cdkDragHandle>drag-handle</div>
+  </div>
+
+  <div class="example-box" cdkDrag cdkDragBoundary=".example-boundary">
+    Drag me around_2
+  </div>
+</div>
+
+<div>xPosition: {{ xPosition }}</div>
+<div>yPosition: {{ yPosition }}</div>
