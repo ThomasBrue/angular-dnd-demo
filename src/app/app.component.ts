@@ -1,4 +1,8 @@
-import { Component, DoCheck } from '@angular/core';
+import { Component, DoCheck, Injector } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+
+import { MathInputComponent } from './math-input/math-input.component';
+import { ComponentBuilderService } from './component-builder.service';
 
 @Component({
   selector: 'app-root',
@@ -43,5 +47,13 @@ export class AppComponent {
       el = el.offsetParent;
     }
     return { top: y, left: x };
+  }
+
+  //-------------------------------------------------------------------------------------
+  constructor(injector: Injector, public popup: ComponentBuilderService) {
+    // Convert `PopupComponent` to a custom element.
+    const PopupElement = createCustomElement(MathInputComponent, { injector });
+    // Register the custom element with the browser.
+    customElements.define('popup-element', PopupElement);
   }
 }
